@@ -14,7 +14,7 @@ namespace Components
 
         public void Rotate(Quaternion target)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * _rotationSpeed);
+            transform.rotation = target;
         }
     }
 }

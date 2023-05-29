@@ -14,6 +14,12 @@ namespace Inputs
         {
             _player = ServiceLocator.Instance.GetService<Player>();
         }
+        
+        private Vector3 Difference()
+        {
+            var playerPosition = _player.transform.position;
+            return playerPosition - transform.position;
+        }
     
         public override Vector3 GetMovementDirection()
         {
@@ -26,14 +32,15 @@ namespace Inputs
 
         public override Quaternion GetRotation()
         {
-            var direction = Difference();
-            
-            if (!(direction.magnitude > 1)) return transform.rotation;
-            
-            direction.y = 0f;
-            var targetRotation = Quaternion.LookRotation(direction);
-            
-            return targetRotation;
+            // var direction = Difference();
+            //
+            // if (!(direction.magnitude > 1)) return transform.rotation;
+            //
+            // direction.y = 0f;
+            // var targetRotation = Quaternion.LookRotation(direction);
+            //
+            // return targetRotation;
+            return transform.rotation;
         }
 
         public override bool IsAttacking()
@@ -41,10 +48,6 @@ namespace Inputs
             return Difference().magnitude <= _attackDistance;
         }
 
-        private Vector3 Difference()
-        {
-            var playerPosition = _player.transform.position;
-            return playerPosition - transform.position;
-        }
+        
     }
 }
